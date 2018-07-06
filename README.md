@@ -2,10 +2,11 @@
 
 #### Steps to configure
 
-1. Add build script Run Script - 
-![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/1.png "Logo Title Text 1")
+##### 1. Add build script Run Script - 
+![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/1.png "Add RunScript")
 
-2. Copy following shell script 
+##### 2. Copy following code in your runscript 
+-
 ```
 #/bin/sh
 
@@ -18,35 +19,35 @@ fileContent="// DO NOT EDIT,
 //
 import Foundation
 class AppInfo {
-let version: String
-let build: String
-let gitCommitSHA: String = \"$version\"
-init?() {
-guard let version = Bundle.main.infoDictionary?[\"CFBundleShortVersionString\"] as? String,
-let build = Bundle.main.infoDictionary?[\"CFBundleVersion\"] as? String else {
-return nil
-}
-self.version = version
-self.build = build
-}
+    let version: String
+    let build: String
+    let gitCommitSHA: String = \"$version\"
+    init?() {
+        guard let version = Bundle.main.infoDictionary?[\"CFBundleShortVersionString\"] as? String,
+            let build = Bundle.main.infoDictionary?[\"CFBundleVersion\"] as? String else {
+                return nil
+            }
+        self.version = version
+        self.build = build
+    }
 }"
 echo "$fileContent" > AppInfo.swift
 ```
-![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/2.png "Logo Title Text 1")
+![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/2.png "RunScript Code")
 
-3. Move run script above the 'compile sources'
-![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/3.png "Logo Title Text 1")
+##### 3. Move run script above the 'compile sources'
+![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/3.png "Put Runscript above compile sources")
 
-3. Now Build your project
-4. It will create a file AppInfo.swift in project's root folder
+##### 4. Now Build your project, It will create a file AppInfo.swift in project's root folder.
 
-5. Drag an drop AppInfo.swift file into your xcode project navigator - include image?
-![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/4.png "Logo Title Text 1")
+##### 5. Drag an drop AppInfo.swift file into your xcode project navigator - include image?
+![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/4.png "Add AppInfo.swift into Xcode")
 
-6. Enjoy using like following:
+#### Usage
+
 ```
 guard let info = AppInfo() else {
-return
+    return
 }
 let infoText = "AppVersion: \(info.version) \nBuild: \(info.build) \nGit hash: \(info.gitCommitSHA)"
 print(infoText)
