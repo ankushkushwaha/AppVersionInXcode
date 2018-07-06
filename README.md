@@ -2,10 +2,10 @@
 
 #### Steps to configure
 
-##### 1. Add build script Run Script - 
+##### 1. Add build script Run Script
 ![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/1.png "Add RunScript")
 
-##### 2. Copy following code in your runscript 
+##### 2. Copy following code in your runscript
 -
 ```
 #/bin/sh
@@ -35,12 +35,12 @@ echo "$fileContent" > AppInfo.swift
 ```
 ![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/2.png "RunScript Code")
 
-##### 3. Move run script above the 'compile sources'
+##### 3. Move/Drag the run script above the 'compile sources'
 ![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/3.png "Put Runscript above compile sources")
 
-##### 4. Now Build your project, It will create a file AppInfo.swift in project's root folder.
+##### 4. Now Build your project, It will create a file AppInfo.swift in project's root folder
 
-##### 5. Drag an drop AppInfo.swift file into your xcode project navigator - include image?
+##### 5. Drag an drop AppInfo.swift file into your xcode project navigator.
 ![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/4.png "Add AppInfo.swift into Xcode")
 
 #### Usage
