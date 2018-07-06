@@ -1,5 +1,8 @@
 # Xcode Application versioning for iOS swift projects
 
+#### Output
+![alt text](https://raw.githubusercontent.com/ankushkushwaha/AppVersionInXcode/master/Images/6.png "Result")
+
 #### Steps to configure
 
 ##### 1. Add build script Run Script
