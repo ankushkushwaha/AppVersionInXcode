@@ -14,23 +14,18 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         guard let info = AppInfo() else {
             return
         }
-        let formattedInfoText = "AppVersion: \(info.version) \nBuild: \(info.build) \nGit hash: \(info.gitCommitSHA)"
+        let infoText = "AppVersion: \(info.version) \nBuild: \(info.build) \nGit hash: \(info.gitCommitSHA)"
+        print(infoText)
 
-        print(formattedInfoText)
+        infoLabel.text = infoText
 
-        infoLabel.text = formattedInfoText
-
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
+
+
 
