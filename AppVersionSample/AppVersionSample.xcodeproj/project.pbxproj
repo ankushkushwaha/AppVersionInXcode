@@ -12,6 +12,7 @@
 		ACF747BD20EF609100E72276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF747BB20EF609100E72276 /* Main.storyboard */; };
 		ACF747BF20EF609100E72276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACF747BE20EF609100E72276 /* Assets.xcassets */; };
 		ACF747C220EF609100E72276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF747C020EF609100E72276 /* LaunchScreen.storyboard */; };
+		ACF747CB20EF630E00E72276 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF747CA20EF630E00E72276 /* AppInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		ACF747BE20EF609100E72276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACF747C120EF609100E72276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACF747C320EF609100E72276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACF747CA20EF630E00E72276 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		ACF747AB20EF609100E72276 = {
 			isa = PBXGroup;
 			children = (
+				ACF747CA20EF630E00E72276 /* AppInfo.swift */,
 				ACF747B620EF609100E72276 /* AppVersionSample */,
 				ACF747B520EF609100E72276 /* Products */,
 			);
@@ -71,6 +74,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACF747C620EF609100E72276 /* Build configuration list for PBXNativeTarget "AppVersionSample" */;
 			buildPhases = (
+				ACF747C920EF613B00E72276 /* Run Script- Generate AppInfo */,
 				ACF747B020EF609100E72276 /* Sources */,
 				ACF747B120EF609100E72276 /* Frameworks */,
 				ACF747B220EF609100E72276 /* Resources */,
@@ -130,6 +134,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ACF747C920EF613B00E72276 /* Run Script- Generate AppInfo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script- Generate AppInfo";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#/bin/sh\n\nversion=$(git rev-parse --verify HEAD | cut -c 1-7)\n\nfileContent=\"// DO NOT EDIT,\n// IT IS A MACHINE GENERATED FILE\n\n//  AppInfo.swift\n//\nimport Foundation\n\nclass AppInfo {\n\n    let version: String\n    let build: String\n    let gitCommitSHA: String = \\\"$version\\\"\n\n    init?() {\n        guard let version = Bundle.main.infoDictionary?[\\\"CFBundleShortVersionString\\\"] as? String,\n            let build = Bundle.main.infoDictionary?[\\\"CFBundleVersion\\\"] as? String else {\n            return nil\n        }\n\n        self.version = version\n        self.build = build\n    }\n}\"\n\necho \"$fileContent\" > AppInfo.swift\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ACF747B020EF609100E72276 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -137,6 +158,7 @@
 			files = (
 				ACF747BA20EF609100E72276 /* ViewController.swift in Sources */,
 				ACF747B820EF609100E72276 /* AppDelegate.swift in Sources */,
+				ACF747CB20EF630E00E72276 /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

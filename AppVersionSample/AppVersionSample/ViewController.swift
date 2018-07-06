@@ -10,9 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var infoLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        guard let info = AppInfo() else {
+            return
+        }
+        let formattedInfoText = "AppVersion: \(info.version) \nBuild: \(info.build) \nGit hash: \(info.gitCommitSHA)"
+
+        print(formattedInfoText)
+
+        infoLabel.text = formattedInfoText
+
     }
 
     override func didReceiveMemoryWarning() {
